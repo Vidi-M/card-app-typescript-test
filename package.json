@@ -14,5 +14,9 @@
   },
   "lint-staged": {
     "**/*": "prettier --ignore-path .prettierignore --ignore-unknown --write"
+  },
+  "dependencies": {
+    "@material-tailwind/html": "^2.3.2",
+    "@material-tailwind/react": "^2.1.10"
   }
 }
