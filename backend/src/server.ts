@@ -24,12 +24,11 @@ server.get<{ Body: Entry; Params: { id: string } }>("/get/:id", async (req, repl
 
 server.post<{ Body: Entry }>("/create/", async (req, reply) => {
   let newEntryBody = req.body;
+  console.log("new_entry: " + req.body.due_for);
   newEntryBody.created_at
     ? (newEntryBody.created_at = new Date(req.body.created_at))
     : (newEntryBody.created_at = new Date());
-  req.body.due_for
-    ? (newEntryBody.due_for = new Date(req.body.due_for))
-    : null
+  req.body.due_for !== null ? (newEntryBody.due_for = new Date(req.body.due_for)) : null;
   try {
     const createdEntryData = await Prisma.entry.create({ data: req.body });
     reply.send(createdEntryData);
@@ -49,9 +48,11 @@ server.delete<{ Params: { id: string } }>("/delete/:id", async (req, reply) => {
 
 server.put<{ Params: { id: string }; Body: Entry }>("/update/:id", async (req, reply) => {
   let updatedEntryBody = req.body;
+  console.log(req.body.due_for);
   updatedEntryBody.created_at
     ? (updatedEntryBody.created_at = new Date(req.body.created_at))
     : (updatedEntryBody.created_at = new Date());
+  req.body.due_for !== null ? (updatedEntryBody.due_for = new Date(req.body.due_for)) : null;
   try {
     await Prisma.entry.update({
       data: req.body,

@@ -3,7 +3,7 @@ import { Entry, EntryContextType } from "../@types/context";
 import { EntryContext } from "../utilities/globalContext";
 
 export default function NewEntry() {
-  const emptyEntry: Entry = { title: "", description: "", created_at: new Date(), due_for: new Date() };
+  const emptyEntry: Entry = { title: "", description: "", created_at: new Date(), due_for: "" };
   const { saveEntry } = useContext(EntryContext) as EntryContextType;
   const [newEntry, setNewEntry] = useState<Entry>(emptyEntry);
   const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -13,8 +13,10 @@ export default function NewEntry() {
     });
   };
   const handleSend = (e: MouseEvent<HTMLButtonElement>) => {
+    console.log(newEntry);
     saveEntry(newEntry);
     setNewEntry(emptyEntry);
+    window.location.href = "/";
   };
   return (
     <section className="flex justify-center flex-col w-fit ml-auto mr-auto mt-10 gap-3 bg-gray-300 p-8 rounded-md dark:bg-gray-800">
@@ -45,13 +47,13 @@ export default function NewEntry() {
           onChange={handleInputChange}
         />
       </div>
-      <div >
+      <div>
         <div className="text-gray-600 dark:text-gray-300">Due for:</div>
         <input
           className="p-3 w-full rounded-md dark:bg-gray-700 dark:text-gray-300 dark:[color-scheme:dark]"
           type="date"
           name="due_for"
-          value={new Date(newEntry.due_for).toISOString().split("T")[0]}
+          value={newEntry.due_for === "" ? "" : new Date(newEntry.due_for).toISOString().split("T")[0]}
           onChange={handleInputChange}
         />
       </div>
