@@ -23,13 +23,13 @@ export default function AllEntries() {
   return (
     <section className="grid grid-cols-2 md:grid-cols-4 dark:bg-gray-900 ">
       {entries.map((entry: Entry, index: number) => {
-        const createdDate = new Date(entry.created_at).getTime();
+        const today = new Date().getTime();
         const dueDate = new Date(entry.due_for).getTime();
-      
+
         // Calculate the daysBetween at the start
         let daysBetween = null;
-        if (!isNaN(createdDate) && !isNaN(dueDate) && dueDate !== 0) {
-          daysBetween = Math.ceil((dueDate - createdDate) / (1000 * 60 * 60 * 24));
+        if (!isNaN(today) && !isNaN(dueDate) && dueDate !== 0) {
+          daysBetween = Math.ceil((dueDate - today) / (1000 * 60 * 60 * 24));
         }
         return (
           <div
@@ -37,18 +37,18 @@ export default function AllEntries() {
             key={index}
             className="bg-gray-200 dark:bg-gray-800 dark:text-gray-300 shadow-md shadow-gray-800 m-3 p-4 rounded flex flex-col justify-between"
           >
-            <h1 className={`font-bold text-sm md:text-lg ${daysBetween === 0 ? 'text-red-700 dark:text-red-400' : ''}`}>{entry.title}</h1>
+            <h1 className={`font-bold text-sm md:text-lg ${daysBetween !== null && daysBetween <= 0 ? "text-red-700 dark:text-red-400" : ""}`}>
+              {entry.title}
+            </h1>
             <p className="text-center text-lg font-light md:mt-2 md:mb-4 mt-1 mb-3">{entry.description}</p>
             <div className="flex justify-between items-center text-lg dark:text-gray-300">
               <span>Created:</span>
-              <time className="text-sm md:text-lg">
-                {new Date(entry.created_at.toString()).toLocaleDateString()}
-              </time>
+              <time className="text-sm md:text-lg">{new Date(entry.created_at.toString()).toLocaleDateString()}</time>
             </div>
             <div className="flex justify-between items-center text-lg dark:text-gray-300">
               <span>Due date:</span>
               <time className="text-sm md:text-lg">
-              {entry.due_for ? new Date(entry.due_for.toString()).toLocaleDateString() : "---"}
+                {entry.due_for ? new Date(entry.due_for.toString()).toLocaleDateString() : "---"}
               </time>
             </div>
             <section className="flex items-center justify-between flex-col md:flex-row pt-2 md:pt-0">
