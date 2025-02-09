@@ -52,6 +52,11 @@ export default function AllEntries() {
               <time className="text-right text-sm md:text-lg">
                 {new Date(entry.created_at.toString()).toLocaleDateString()}
               </time>
+              <time className="text-right text-sm md:text-lg">
+                {entry.due_for
+                  ? new Date(entry.due_for.toString()).toLocaleDateString()
+                  : "null"}
+              </time>
             </section>
           </div>
         );

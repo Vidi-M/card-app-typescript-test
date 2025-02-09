@@ -27,6 +27,9 @@ server.post<{ Body: Entry }>("/create/", async (req, reply) => {
   newEntryBody.created_at
     ? (newEntryBody.created_at = new Date(req.body.created_at))
     : (newEntryBody.created_at = new Date());
+  req.body.due_for
+    ? (newEntryBody.due_for = new Date(req.body.due_for))
+    : null
   try {
     const createdEntryData = await Prisma.entry.create({ data: req.body });
     reply.send(createdEntryData);

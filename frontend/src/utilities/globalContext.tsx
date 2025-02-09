@@ -28,7 +28,6 @@ export const EntryProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     setEntries((entries) => {
       const entryIndex = entries.findIndex((obj) => obj.id == id);
       entries[entryIndex] = entry;
-      console.log(entries);
       return entries;
     });
   };

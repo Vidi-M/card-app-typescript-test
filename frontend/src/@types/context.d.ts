@@ -3,6 +3,7 @@ export interface Entry {
   title: string;
   description: string;
   created_at: Date | string;
+  due_for: Date | string;
 }
 export type EntryContextType = {
   entries: Entry[];
