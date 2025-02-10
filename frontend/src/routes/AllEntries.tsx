@@ -37,7 +37,11 @@ export default function AllEntries() {
             key={index}
             className="bg-gray-200 dark:bg-gray-800 dark:text-gray-300 shadow-md shadow-gray-800 m-3 p-4 rounded flex flex-col justify-between"
           >
-            <h1 className={`font-bold text-sm md:text-lg ${daysBetween !== null && daysBetween <= 0 ? "text-red-700 dark:text-red-400" : ""}`}>
+            <h1
+              className={`font-bold text-sm md:text-lg ${
+                daysBetween !== null && daysBetween <= 0 ? "text-red-700 dark:text-red-400" : ""
+              }`}
+            >
               {entry.title}
             </h1>
             <p className="text-center text-lg font-light md:mt-2 md:mb-4 mt-1 mb-3">{entry.description}</p>

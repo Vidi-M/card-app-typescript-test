@@ -21,9 +21,7 @@ export default function EditEntry() {
     });
   };
   const handleSend = (e: MouseEvent<HTMLButtonElement>) => {
-    console.log(newEntry);
     updateEntry(id as string, newEntry);
-    window.location.href = "/";
   };
   return (
     <section className="flex justify-center flex-col w-fit ml-auto mr-auto mt-10 gap-3 bg-gray-300 p-8 rounded-md dark:bg-gray-800">

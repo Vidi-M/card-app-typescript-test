@@ -13,10 +13,8 @@ export default function NewEntry() {
     });
   };
   const handleSend = (e: MouseEvent<HTMLButtonElement>) => {
-    console.log(newEntry);
     saveEntry(newEntry);
     setNewEntry(emptyEntry);
-    window.location.href = "/";
   };
   return (
     <section className="flex justify-center flex-col w-fit ml-auto mr-auto mt-10 gap-3 bg-gray-300 p-8 rounded-md dark:bg-gray-800">
