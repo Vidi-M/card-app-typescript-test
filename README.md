@@ -102,3 +102,13 @@ cd ./dist
 
 npx serve -p 3000 -s
 ```
+## Changes made by Vidisha Mistry
+
+### Dark Mode:
+I implemented a dark mode feature that allows users to toggle between light and dark themes. To achieve this, I created a settings dialog where users can switch between the two modes. The design sticks to a blue and gray color scheme for a consistent and aesthetically pleasing experience across both themes. I also ensured that the user's last selected preference (light or dark mode) is saved to local storage. This way, the mode persists even if the user refreshes or revisits the page, providing a more seamless experience.
+
+### Scheduled Date Feature:
+I added a new optional field, due_for, which allows users to set a scheduled date for each card. Since not every card requires a due date, I made this field optional. I updated the database to handle both null values (for cards without a due date) and valid dates. On the frontend, I modified the create and update forms to allow users to add or modify this optional due date. The display of cards was also adjusted to show the scheduled date and how many days are left until the due date. Additionally, I added a visual indicator where the card title turns red if the current date has reached or surpassed the scheduled date, giving users a clear warning that the task is overdue.
+
+### Backend Tests:
+I wrote 12 backend tests to ensure the CRUD functionalities of the app are working as expected. These tests cover various scenarios, including successful operations and error cases, to make sure the app behaves as intended even under edge cases. I used Jest and Fastify's .inject() method to mock the database calls, ensuring that no actual API requests are made during the test runs. This approach follows best practices, as it allows for faster, isolated, and more predictable tests.
